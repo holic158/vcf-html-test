@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+
+function share(){
+
+   alert("start");
+
+    var vCardsJS = require('vcards-js');
+ 
+    //create a new vCard
+    var vCard = vCardsJS();
+    
+    //set properties
+    vCard.firstName = '영민';
+    vCard.middleName = 'J';
+    vCard.lastName = '조';
+    vCard.organization = 'ACME Corporation';
+    vCard.photo.attachFromUrl('https://avatars2.githubusercontent.com/u/5659221?v=3&s=460', 'JPEG');
+    vCard.workPhone = '312-555-1212';
+    vCard.birthday = new Date(1985, 0, 1);
+    vCard.title = 'Software Developer';
+    vCard.url = 'https://github.com/enesser';
+    vCard.note = 'Notes on Eric';
+    
+    //save to file
+    vCard.saveToFile('./eric-nesser.vcf');
+
+    
+
+   alert("end");
+}
+
+function share2(){
+  var message = '';
+  message += 'BEGIN:VCARD\r\n';
+  message += 'BDAY;VALUE=DATE:1963-09-21\r\n';
+  message += 'VERSION:3.0\r\n';
+  message += 'N:Stenerson;Derik\r\n';
+  message += 'FN:Derik Stenerson\r\n';
+  message += 'ORG:Microsoft Corporation\r\n';
+  message += 'ADR;TYPE=WORK,POSTAL,PARCEL:;;One Microsoft Way;Redmond;WA;98052-6399;USA\r\n';
+  message += 'TEL;TYPE=WORK,MSG:+1-425-936-5522\r\n';
+  message += 'TEL;TYPE=WORK,FAX:+1-425-936-7329\r\n';
+  message += 'EMAIL;TYPE=INTERNET:deriks@Microsoft.com\r\n';
+  message += 'END:VCARD\r\n';
+
+  message += 'BEGIN:VCARD\r\n';
+  message += 'VERSION:3.0\r\n';
+  message += 'N:Ganguly;Anik\r\n';
+  message += 'FN:Anik Ganguly\r\n';
+  message += 'ORG: Open Text Inc.\r\n';
+  message += 'ADR;TYPE=WORK,POSTAL,PARCEL:;Suite 101;38777 West Six Mile Road;Livonia;MI;48152;USA\r\n';
+  message += 'TEL;TYPE=WORK,MSG:+1-734-542-5955\r\n';
+  message += 'EMAIL;TYPE=INTERNET:ganguly@acm.org\r\n';
+  message += 'END:VCARD\r\n';
+
+  message += 'BEGIN:VCARD\r\n';
+  message += 'VERSION:3.0\r\n';
+  message += 'N:Moskowitz;Robert\r\n';
+  message += 'FN:Robert Moskowitz\r\n';
+  message += 'EMAIL;TYPE=INTERNET:rgm-ietf@htt-consult.com\r\n';
+  message += 'END:VCARD\r\n';
+
+ var text = 'Text to File'
+ var link = document.createElement('a');
+ link.download = 'file.vcf';
+ var blob = new Blob([message], {type: 'text/vcard'});
+ link.href = window.URL.createObjectURL(blob);
+ link.click();
+
+}
+
+</script>
+</head>
+<body>
+vcard<br><br><br>
+
+
+<button onclick="share()">vcard 생성</button><br><br><br>
+<button onclick="share2()">vcard 생성2</button><br><br><br>
+
+
+    
+</body>
+</html>
